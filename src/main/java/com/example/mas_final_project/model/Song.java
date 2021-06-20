@@ -45,6 +45,13 @@ public class Song {
     @OneToMany(mappedBy = "song")
     private Set<ListenHistory> listenHistory = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "independent_artist")
+    @Nullable
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private IndependentArtist independent_artist;
+
     public void addAlbum(Album album) {
         albums.add(album);
     }

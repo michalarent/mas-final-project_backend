@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 public class AlbumExtendedPlay extends Album {
 
     @Nullable

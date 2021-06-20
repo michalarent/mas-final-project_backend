@@ -55,6 +55,12 @@ public class Label {
     @Nullable
     private Set<Album> albums;
 
+    @ManyToOne
+    private Label owner;
+
+    @OneToMany(mappedBy="owner")
+    private Set<Label> acquiredLabels;
+
 
     public Label(String name, Date dateOfFounding, Date dateOfClosure, String country) {
         System.out.println("CREATING label");

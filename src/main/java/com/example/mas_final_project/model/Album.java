@@ -17,7 +17,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+
 @ToString
 public class Album {
 
@@ -49,7 +49,7 @@ public class Album {
     private Artist artist;
 
     @ManyToOne
-    @JoinColumn(name = "label_id", nullable = true)
+    @JoinColumn(name = "label_id")
     @Nullable
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

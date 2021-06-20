@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 public class AlbumLongPlay extends Album {
 
 

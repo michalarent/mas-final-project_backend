@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 @Entity
 @Data
 @NoArgsConstructor
-@SuperBuilder
 public class AlbumCompilation extends Album {
 
 
