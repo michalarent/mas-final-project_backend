@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 @SuperBuilder
 public class AlbumLongPlay extends Album {
 
+
     private String introduction;
 
 }

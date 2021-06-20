@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,6 +19,7 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String title;
 
     @Nullable
@@ -38,6 +41,9 @@ public class Song {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     Set<Playlist> playlists;
+
+    @OneToMany(mappedBy = "song")
+    private Set<ListenHistory> listenHistory = new HashSet<>();
 
     public void addAlbum(Album album) {
         albums.add(album);

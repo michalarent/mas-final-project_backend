@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,6 +24,7 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String name;
 
     @Nullable

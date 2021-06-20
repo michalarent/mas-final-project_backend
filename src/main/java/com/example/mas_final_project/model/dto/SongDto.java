@@ -18,9 +18,10 @@ public class SongDto {
         SongDto songDto = new SongDto();
         songDto.setId(song.getId());
         songDto.setTitle(song.getTitle());
-        if (song.getAlbums() != null) {
-            songDto.setPlainAlbumDtoSet(song.getAlbums().stream().map(PlainAlbumDto::from).collect(Collectors.toSet()));
-        }
+
+//        if (song.getAlbums() != null) {
+//            songDto.setPlainAlbumDtoSet(song.getAlbums().stream().map(PlainAlbumDto::from).collect(Collectors.toSet()));
+//        }
 
 
         return songDto;

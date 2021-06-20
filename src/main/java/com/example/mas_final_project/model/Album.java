@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Blob;
 import java.util.Date;
 import java.util.Set;
@@ -24,13 +25,16 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String title;
 
+    @NotEmpty
     private String description;
 
     @Nullable
     private Date releaseDate;
 
+    @Column(columnDefinition = "boolean default true")
     private boolean isHidden;
 
     @Lob
@@ -38,7 +42,7 @@ public class Album {
     private byte[] coverImage;
 
     @ManyToOne
-    @JoinColumn(name = "artist_id", nullable = true)
+    @JoinColumn(name = "artist_id")
     @Nullable
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

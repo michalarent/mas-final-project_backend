@@ -8,6 +8,7 @@ import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.Set;
 
@@ -23,17 +24,16 @@ public class Performer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
+    @NotEmpty
     private String firstName;
 
-    @NotNull
+    @NotEmpty
     private String lastName;
 
     @Nullable
     private Date activityEndDate;
 
-    @Nullable
+    @NotEmpty
     private String bio;
 
     @ManyToMany(mappedBy = "performers")

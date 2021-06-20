@@ -13,5 +13,6 @@ import javax.persistence.Entity;
 @SuperBuilder
 public class AlbumCompilation extends Album {
 
+
     private String compilation;
 }

@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Set;
@@ -24,13 +25,16 @@ public class Label {
     private Long id;
 
     @Column(unique = true)
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private Date dateOfFounding;
 
     @Nullable
     private Date dateOfClosure;
 
+    @NotEmpty
     private String country;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

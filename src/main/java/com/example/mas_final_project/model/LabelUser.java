@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -15,6 +16,7 @@ import javax.persistence.*;
 @ToString
 public class LabelUser extends User {
 
+    @NotEmpty
     private String username;
 
     @OneToOne
