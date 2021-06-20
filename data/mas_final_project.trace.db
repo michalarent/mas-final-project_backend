@@ -1,0 +1,3 @@
+2021-06-19 00:46:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "DESCRIPTION VARCHAR(255)": "'My Favorite Things is the seventh studio album by jazz musician John Coltrane, released in 1961 on Atlantic Records, catalogue ... (349)"; SQL statement:
+insert into album (artist_id, cover_image, description, is_hidden, label_id, release_date, title, dtype, id) values (?, ?, ?, ?, ?, ?, ?, 'Album', ?) [22001-193]
