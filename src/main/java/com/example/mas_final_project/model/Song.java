@@ -15,16 +15,34 @@ import java.util.Set;
 @Data
 public class Song {
 
+    /**
+     * Unique and auto-generated
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    /**
+     * Title of the song
+     * Cannot be empty
+     * Max 255 characters as per limitations of VARCHAR(255)
+     */
     @NotEmpty
     private String title;
 
+    /**
+     * Lyrics of the song
+     * Nullable
+     * Max 255 characters as per limitations of VARCHAR(255)
+     */
     @Nullable
     private String lyrics;
 
+    /**
+     * URL of the song
+     * Nullable
+     * Max 255 characters as per limitations of VARCHAR(255)
+     */
     @Nullable
     private String url;
 
@@ -32,16 +50,28 @@ public class Song {
 //    @Column(columnDefinition = "BLOB")
 //    private byte[] songFile;
 
+
+    /**
+     * Many to many association with Album
+     * Album is an owner of the association - when deleting an album, a song gets deleted too
+     */
     @ManyToMany(mappedBy = "songs")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     Set<Album> albums;
 
+    /**
+     * Many to many association with Playlist
+     * A song won't get deleted upon deletion of a playlist
+     */
     @ManyToMany(mappedBy = "playlistSongs")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     Set<Playlist> playlists;
 
+    /**
+     * Listen history - association with an attribute
+     */
     @OneToMany(mappedBy = "song")
     private Set<ListenHistory> listenHistory = new HashSet<>();
 

@@ -20,22 +20,46 @@ import java.util.Set;
 @ToString
 public class Performer {
 
+
+    /**
+     * Unique and auto-generated
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    /**
+     * Cannot be empty
+     * Max 255 chars as per limitations of VARCHAR(255)
+     */
     @NotEmpty
     private String firstName;
 
+    /**
+     * Cannot be empty
+     * Max 255 chars as per limitations of VARCHAR(255)
+     */
     @NotEmpty
     private String lastName;
 
+    /**
+     * Nullable
+     */
     @Nullable
     private Date activityEndDate;
 
+    /**
+     * Cannot be empty
+     * Max 255 chars as per limitations of VARCHAR(255)
+     */
     @NotEmpty
     private String bio;
 
+    /**
+     * Many to many association
+     * Max 255 chars as per limitations of VARCHAR(255)
+     */
     @ManyToMany(mappedBy = "performers")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -49,6 +73,9 @@ public class Performer {
         artists.remove(artist);
     }
 
+    /**
+     * Parsing from a DTO
+     */
     public static Performer from(PerformerDto performerDto) {
         Performer performer = new Performer();
         performer.setFirstName(performerDto.getFirstName());

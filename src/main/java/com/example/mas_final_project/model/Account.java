@@ -16,6 +16,7 @@ import java.util.Date;
 @ToString
 public class Account {
 
+
     public static float fee = (float) 0.02;
 
     @Id
@@ -28,6 +29,10 @@ public class Account {
     private Date lastPayoutDate;
 
 
+    /**
+     * Composite association with LABEL being the owner of the association
+     * Label automatically creates an account
+     */
     @OneToOne
     @JoinColumn(name = "fk_label")
     @ToString.Exclude
@@ -35,6 +40,10 @@ public class Account {
     @Nullable
     private Label label;
 
+    /**
+     * Composition with ARTIST being the owner of the association
+     * Label automatically creates an account
+     */
     @OneToOne
     @JoinColumn(name = "fk_artist")
     @ToString.Exclude
@@ -42,18 +51,27 @@ public class Account {
     @Nullable
     private Artist artist;
 
+    /**
+     * Private constructor
+     */
     private Account(float balance, Date lastPayoutDate, Label label) {
         this.balance = balance;
         this.lastPayoutDate = lastPayoutDate;
         this.label = label;
     }
 
+    /**
+     * Private constructor (overloaded)
+     */
     private Account(float balance, Date lastPayoutDate, Artist artist) {
         this.balance = balance;
         this.lastPayoutDate = lastPayoutDate;
         this.artist = artist;
     }
 
+    /**
+     * Creation method initiated in Label Service
+     */
     public static Account createAccount(float balance, Date lastPayoutDate, Label label) {
         Account account = new Account(balance, lastPayoutDate, label);
         label.setAccount(account);
@@ -61,6 +79,9 @@ public class Account {
         return account;
     }
 
+    /**
+     * Creation method initiated in Artist Service
+     */
     public static Account createAccount(float balance, Date lastPayoutDate, Artist artist) {
         Account account = new Account(balance, lastPayoutDate, artist);
         artist.setAccount(account);
@@ -68,6 +89,9 @@ public class Account {
         return account;
     }
 
+    /**
+     * Parsing an Account entity from a DTO
+     */
     public static Account from(AccountDto accountDto) {
         Account account = new Account();
         System.out.println(accountDto);

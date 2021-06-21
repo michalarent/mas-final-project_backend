@@ -19,29 +19,50 @@ import java.util.Set;
 @ToString
 public class Artist {
 
+
     public static final float royaltiesPerListen = (float) 0.0001;
+    /**
+     * Unique and auto-generated
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    /**
+     * Name of the artist
+     * Max 255 chars as per limitations of VARCHAR(255)
+     */
     @NotEmpty
     private String name;
 
+    /**
+     * Optional
+     */
     @Nullable
     private Date activityEndDate;
 
+    /**
+     * Composition
+     */
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "fk_artist")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Account account;
 
+    /**
+     * Composition
+     */
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "fk_artistuser")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private ArtistUser artistUser;
 
+    /**
+     * Owner of the association
+     * Artist can have many albums
+     */
     @OneToMany(mappedBy = "artist")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -53,6 +74,11 @@ public class Artist {
 
     }
 
+    /**
+     * Many to many relation with performers
+     * Artist is the "owner" of the association
+     * An artist is made of multiple Performers
+     */
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "performer_artist",
             joinColumns = @JoinColumn(name = "performer_id", referencedColumnName = "id"),
